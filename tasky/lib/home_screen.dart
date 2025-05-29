@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tasky/add_new_task_screen.dart';
-import 'package:tasky/models/task_mode.dart';
+import 'package:tasky/components/custom_task_container.dart';
+import 'package:tasky/models/task_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -183,55 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemCount: tasks.length,
                     itemBuilder: (context, index) {
                       final task = tasks[index];
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Container(
-                          padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
-                          height: 56,
-                          decoration: BoxDecoration(
-                            color: Color(0xFF282828),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Row(
-                            children: [
-                              // Checkbox(value: false, onChanged: (value) {}),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      task.name,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .displayMedium
-                                          ?.copyWith(
-                                            fontSize: 16,
-                                            color: Colors.white,
-                                          ),
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 1,
-                                    ),
-                                    Text(
-                                      task.description,
-                                      style: Theme.of(
-                                        context,
-                                      ).textTheme.bodyMedium,
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 1,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(width: 8),
-                              // Icon(
-                              //   Icons.more_vert,
-                              //   size: 16,
-                              //   color: Color(0xFF6C6C6C),
-                              // ),
-                            ],
-                          ),
-                        ),
-                      );
+                      return CustomTaskContainer(task: task);
                     },
                   ),
                 ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tasky/home_screen.dart';
 import 'package:tasky/login_screen.dart';
 import 'package:tasky/main_screen.dart';
 
@@ -100,6 +99,7 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
         ),
+        iconTheme: IconThemeData(size: 16, color: Color(0xFF6C6C6C)),
       ),
       home: userName != null ? MainScreen() : LoginScreen(),
     );

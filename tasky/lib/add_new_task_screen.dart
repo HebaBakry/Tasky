@@ -2,8 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tasky/components/custom_screen_top_bar.dart';
 import 'package:tasky/components/custom_text_field.dart';
-import 'package:tasky/models/task_mode.dart';
+import 'package:tasky/models/task_model.dart';
 
 class AddNewTask extends StatefulWidget {
   const AddNewTask({super.key});
@@ -31,31 +32,8 @@ class _AddNewTaskState extends State<AddNewTask> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 40),
-                  Row(
-                    children: [
-                      IconButton(
-                        icon: Icon(
-                          Icons.arrow_back,
-                          size: 32,
-                          color: Colors.white,
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                      SizedBox(width: 10),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 18.0),
-                        child: Text(
-                          'New Task',
-                          style: Theme.of(
-                            context,
-                          ).textTheme.displayMedium?.copyWith(fontSize: 24),
-                        ),
-                      ),
-                    ],
-                  ),
+                  SizedBox(height: 18),
+                  CustomScreenTopBar(title: "New Task"),
                   CustomTextField(
                     text: 'Task Name',
                     controller: taskNameController,
