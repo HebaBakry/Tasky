@@ -46,6 +46,7 @@ class _ToDoScreenState extends State<ToDoScreen> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
+              SizedBox(height: 18),
               CustomScreenTopBar(title: 'To Do Tasks'),
               Expanded(
                 child: ListView.builder(

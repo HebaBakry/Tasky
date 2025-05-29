@@ -128,37 +128,48 @@ class _HomeScreenState extends State<HomeScreen> {
                                 vertical: 8.0,
                               ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  // Checkbox(value: false, onChanged: (value) {}),
+                                  Checkbox(
+                                    value: false,
+                                    onChanged: (value) {},
+                                    materialTapTargetSize:
+                                        MaterialTapTargetSize.shrinkWrap,
+                                  ),
+                                  SizedBox(width: 8),
                                   Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          task.name,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .displayMedium
-                                              ?.copyWith(
-                                                fontSize: 16,
-                                                color: Colors.white,
-                                              ),
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1,
-                                        ),
-                                        Text(
-                                          task.description,
-                                          style: Theme.of(
-                                            context,
-                                          ).textTheme.bodyMedium,
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1,
-                                        ),
-                                      ],
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            task.name,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .displayMedium
+                                                ?.copyWith(
+                                                  fontSize: 16,
+                                                  color: Colors.white,
+                                                ),
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                          ),
+                                          if (task
+                                              .description
+                                              .isNotEmpty) // Only show if exists
+                                            Text(
+                                              task.description,
+                                              style: Theme.of(
+                                                context,
+                                              ).textTheme.bodyMedium,
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                            ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],

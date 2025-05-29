@@ -46,6 +46,7 @@ class _CompletedTasksScreenState extends State<CompletedTasksScreen> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
+              SizedBox(height: 18),
               CustomScreenTopBar(title: 'Completed Tasks'),
               Expanded(
                 child: ListView.builder(

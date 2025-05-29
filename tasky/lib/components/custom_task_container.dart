@@ -3,7 +3,6 @@ import 'package:tasky/models/task_model.dart';
 
 class CustomTaskContainer extends StatelessWidget {
   const CustomTaskContainer({super.key, required this.task});
-
   final TaskModel task;
 
   @override
@@ -19,27 +18,32 @@ class CustomTaskContainer extends StatelessWidget {
         ),
         child: Row(
           children: [
-            // Checkbox(value: false, onChanged: (value) {}),
+            Checkbox(value: false, onChanged: (value) {}),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    task.name,
-                    style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                      fontSize: 16,
-                      color: Colors.white,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      task.name,
+                      style: Theme.of(context).textTheme.displayMedium
+                          ?.copyWith(fontSize: 16, color: Colors.white),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
-                  Text(
-                    task.description,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                  ),
-                ],
+                    if (task
+                        .description
+                        .isNotEmpty) // Only show if description exists
+                      Text(
+                        task.description,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                  ],
+                ),
               ),
             ),
             SizedBox(width: 8),
