@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tasky/home_screen.dart';
 import 'package:tasky/login_screen.dart';
+import 'package:tasky/main_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -85,9 +86,22 @@ class MyApp extends StatelessWidget {
             (states) => states.contains(WidgetState.selected) ? 0 : 2,
           ),
         ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Color(0xFF181818),
+          selectedItemColor: Color(0xFF15B86C),
+          type: BottomNavigationBarType.fixed,
+          unselectedItemColor: Colors.white,
+          selectedLabelStyle: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
+          unselectedLabelStyle: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
-      home: userName != null ? HomeScreen() : LoginScreen(),
-      // home: LoginScreen(),
+      home: userName != null ? MainScreen() : LoginScreen(),
     );
   }
 }
