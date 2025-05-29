@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tasky/home_screen.dart';
+import 'package:tasky/login_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  final String? userName = prefs.getString('userName');
+  runApp(MyApp(userName: userName));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.userName});
+  final String? userName;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +35,20 @@ class MyApp extends StatelessWidget {
             color: Color(0xFFFFFCFC),
             fontWeight: FontWeight.w400,
           ),
-
+          bodyMedium: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            color: Color(0xFF6C6C6C),
+          ),
           displaySmall: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w500,
             color: Color(0xFFFFFCFC),
+          ),
+          bodySmall: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            color: Color(0xFF15B86C),
           ),
         ),
         inputDecorationTheme: InputDecorationTheme(
@@ -50,89 +65,29 @@ class MyApp extends StatelessWidget {
             borderSide: BorderSide.none,
           ),
         ),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            SizedBox(height: 40),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.asset(
-                  'assets/images/Vector.svg',
-                  width: 42,
-                  height: 42,
-                ),
-                SizedBox(width: 16),
-                Text('Tasky', style: Theme.of(context).textTheme.displayMedium),
-              ],
-            ),
-            SizedBox(height: 108),
-            Text(
-              'Welcome to Tasky 👋🏻',
-              style: Theme.of(
-                context,
-              ).textTheme.displayMedium?.copyWith(fontSize: 24),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Your productivity journey starts here.',
-              style: Theme.of(
-                context,
-              ).textTheme.displayMedium?.copyWith(fontSize: 16),
-            ),
-            SizedBox(height: 24),
-            SvgPicture.asset('assets/images/pana.svg'),
-            SizedBox(height: 28),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Full Name',
-                style: Theme.of(
-                  context,
-                ).textTheme.displayMedium?.copyWith(fontSize: 16),
-              ),
-            ),
-            SizedBox(height: 8),
-            TextField(
-              style: TextStyle(color: Colors.white),
-              cursorColor: Colors.white,
-              decoration: InputDecoration(hintText: 'e.g. Heba Bakry'),
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      return HomeScreen();
-                    },
-                  ),
-                );
-              },
-              child: Text(
-                'Let’s Get Started',
-                style: Theme.of(context).textTheme.displaySmall,
-              ),
-            ),
-          ],
+        switchTheme: SwitchThemeData(
+          trackColor: WidgetStateProperty.resolveWith(
+            (states) => states.contains(WidgetState.selected)
+                ? Color(0xFF15B86C)
+                : Colors.white,
+          ),
+          thumbColor: WidgetStateProperty.resolveWith(
+            (states) => states.contains(WidgetState.selected)
+                ? Colors.white
+                : Color(0xFF9E9E9E),
+          ),
+          trackOutlineColor: WidgetStateProperty.resolveWith(
+            (states) => states.contains(WidgetState.selected)
+                ? Colors.transparent
+                : Color(0xFF9E9E9E),
+          ),
+          trackOutlineWidth: WidgetStateProperty.resolveWith(
+            (states) => states.contains(WidgetState.selected) ? 0 : 2,
+          ),
         ),
       ),
+      home: userName != null ? HomeScreen() : LoginScreen(),
+      // home: LoginScreen(),
     );
   }
 }
