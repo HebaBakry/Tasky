@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tasky/completed_tasks_screen.dart';
-import 'package:tasky/home_screen.dart';
-import 'package:tasky/profile_screen.dart';
-import 'package:tasky/to_do_screen.dart';
+import 'package:tasky/features/profile/profile_screen.dart';
+import 'package:tasky/features/tasks/complete_tasks_screen.dart';
+import 'package:tasky/features/home/home_screen.dart';
+import 'package:tasky/features/tasks/todo_tasks_screen.dart';
 
 class MainScreen extends StatefulWidget {
-  MainScreen({super.key});
+  const MainScreen({super.key});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -14,8 +14,8 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   List<Widget> screens = [
     HomeScreen(),
-    ToDoScreen(),
-    CompletedTasksScreen(),
+    TasksScreen(),
+    CompleteTasksScreen(),
     ProfileScreen(),
   ];
 
@@ -24,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[_currentIndex],
+      body: SafeArea(child: screens[_currentIndex]),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),

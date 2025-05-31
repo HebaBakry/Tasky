@@ -3,7 +3,7 @@ class TaskModel {
   final String name;
   final String description;
   final bool isHighPriority;
-  final bool isCompleted;
+  bool isCompleted;
 
   TaskModel({
     required this.id,

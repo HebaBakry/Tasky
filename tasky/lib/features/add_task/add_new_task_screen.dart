@@ -1,28 +1,24 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tasky/components/custom_screen_top_bar.dart';
-import 'package:tasky/components/custom_text_field.dart';
+import 'package:tasky/core/widgets/custom_text_form_field.dart';
+import 'package:tasky/features/add_task/add_task_controller.dart';
 import 'package:tasky/models/task_model.dart';
 
-class AddNewTask extends StatefulWidget {
-  const AddNewTask({super.key});
+class AddNewTask extends StatelessWidget {
+  AddNewTask({super.key});
 
-  @override
-  State<AddNewTask> createState() => _AddNewTaskState();
-}
-
-class _AddNewTaskState extends State<AddNewTask> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController taskNameController = TextEditingController();
   final TextEditingController taskDescriptionController =
       TextEditingController();
-  bool isON = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('New Task')),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -33,9 +29,8 @@ class _AddNewTaskState extends State<AddNewTask> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 18),
-                  CustomScreenTopBar(title: "New Task"),
-                  CustomTextField(
-                    text: 'Task Name',
+                  CustomTextFormField(
+                    title: 'Task Name',
                     controller: taskNameController,
                     hintText: 'Finish UI design for login screen',
                     validator: (value) {
@@ -46,8 +41,8 @@ class _AddNewTaskState extends State<AddNewTask> {
                     },
                   ),
                   SizedBox(height: 20),
-                  CustomTextField(
-                    text: 'Task Description',
+                  CustomTextFormField(
+                    title: 'Task Description',
                     controller: taskDescriptionController,
                     hintText:
                         'Finish onboarding UI and hand off to devs by Thursday.',
@@ -63,19 +58,29 @@ class _AddNewTaskState extends State<AddNewTask> {
                           context,
                         ).textTheme.displayMedium?.copyWith(fontSize: 16),
                       ),
-                      Switch(
-                        value: isON,
-                        onChanged: (value) {
-                          setState(() {
-                            isON = value;
-                          });
+                      Selector<AddTaskController, bool>(
+                        selector: (context, AddTaskController controller) =>
+                            controller.isON,
+                        builder: (BuildContext context, bool isON, Widget? child) {
+                          final controller = context.read<AddTaskController>();
+                          //I don't want this widget to rebuild when the controller changes.
+                          return Switch(
+                            value: isON,
+                            onChanged: (value) {
+                              controller.toggleSwitch(value);
+                            },
+                          );
                         },
                       ),
                     ],
                   ),
                   SizedBox(height: 97),
                   ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: Size(MediaQuery.of(context).size.width, 40),
+                    ),
                     onPressed: () async {
+                      final isON = context.read<AddTaskController>().isON;
                       if (_formKey.currentState?.validate() ?? false) {
                         final SharedPreferences prefs =
                             await SharedPreferences.getInstance();
