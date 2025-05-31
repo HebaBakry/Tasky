@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:tasky/core/constants/storage_key.dart';
 import 'package:tasky/core/services/preferences_manager.dart';
-import 'package:tasky/models/task_model.dart';
+import 'package:tasky/features/tasks/models/task_model.dart';
 
 class TaskController with ChangeNotifier {
   List<TaskModel> tasksList = [];

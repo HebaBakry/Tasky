@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tasky/core/widgets/custom_text_form_field.dart';
 import 'package:tasky/features/add_task/add_task_controller.dart';
-import 'package:tasky/models/task_model.dart';
+import 'package:tasky/features/tasks/models/task_model.dart';
 
 class AddNewTask extends StatelessWidget {
   AddNewTask({super.key});

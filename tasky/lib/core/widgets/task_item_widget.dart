@@ -6,7 +6,7 @@ import 'package:tasky/core/enums/task_item_actions_enum.dart';
 import 'package:tasky/core/services/preferences_manager.dart';
 import 'package:tasky/core/theme/theme_controller.dart';
 import 'package:tasky/core/widgets/custom_text_form_field.dart';
-import 'package:tasky/models/task_model.dart';
+import 'package:tasky/features/tasks/models/task_model.dart';
 
 class TaskItemWidget extends StatelessWidget {
   const TaskItemWidget({
