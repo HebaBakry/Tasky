@@ -1,11 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tasky/core/constants/storage_key.dart';
-import 'package:tasky/core/services/preferences_manager.dart';
 import 'package:tasky/features/tasks/task_controller.dart';
-import 'package:tasky/models/task_model.dart';
 import 'package:tasky/core/widgets/task_list_widget.dart';
 
 class TasksScreen extends StatelessWidget {
@@ -39,39 +34,7 @@ class TasksScreen extends StatelessWidget {
                           : TaskListWidget(
                               tasks: controller.todoTasks,
                               onTap: (value, index) async {
-                                controller.todoTasks[index!].isCompleted =
-                                    value ?? false;
-
-                                final allData = PreferencesManager().getString(
-                                  StorageKey.tasks,
-                                );
-
-                                if (allData != null) {
-                                  List<TaskModel> allDataList =
-                                      (jsonDecode(allData) as List)
-                                          .map(
-                                            (element) =>
-                                                TaskModel.fromMap(element),
-                                          )
-                                          .toList();
-
-                                  final int newIndex = allDataList.indexWhere(
-                                    (e) =>
-                                        e.id == controller.todoTasks[index].id,
-                                  );
-                                  allDataList[newIndex] =
-                                      controller.todoTasks[index];
-
-                                  await PreferencesManager().setString(
-                                    StorageKey.tasks,
-                                    jsonEncode(
-                                      allDataList
-                                          .map((e) => e.toMap())
-                                          .toList(),
-                                    ),
-                                  );
-                                  controller.loadTask();
-                                }
+                                controller.doneTask(value, index);
                               },
                               emptyMessage: 'No Task Found',
                               onDelete: (int? id) {

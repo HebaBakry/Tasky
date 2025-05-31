@@ -63,7 +63,7 @@ class TaskController with ChangeNotifier {
 
     final updatedTask = tasks.map((element) => element.toMap()).toList();
     PreferencesManager().setString(StorageKey.tasks, jsonEncode(updatedTask));
-    // _loadData();
+    _loadData();
     notifyListeners();
   }
 
