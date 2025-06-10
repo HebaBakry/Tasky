@@ -18,6 +18,7 @@ class TaskController with ChangeNotifier {
 
   init() {
     loadTask();
+    print('load tasks');
   }
 
   void loadTask() async {

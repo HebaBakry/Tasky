@@ -12,8 +12,19 @@ import 'package:tasky/features/home/components/sliver_task_list_widget.dart';
 import 'package:tasky/features/home/home_controller.dart';
 import 'package:tasky/features/tasks/task_controller.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    context.read<TaskController>().loadTask();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -5,8 +5,7 @@ import 'package:tasky/core/services/preferences_manager.dart';
 import 'package:tasky/core/theme/dark_theme.dart';
 import 'package:tasky/core/theme/light_theme.dart';
 import 'package:tasky/core/theme/theme_controller.dart';
-import 'package:tasky/features/login/login_screen.dart';
-import 'package:tasky/features/navigation/main_screen.dart';
+import 'package:tasky/features/splash_screen.dart';
 import 'package:tasky/features/tasks/task_controller.dart';
 
 Future<void> main() async {
@@ -36,7 +35,7 @@ class MyApp extends StatelessWidget {
             theme: lightTheme,
             darkTheme: darkTheme,
             themeMode: themeMode,
-            home: userName != null ? MainScreen() : LoginScreen(),
+            home: SplashScreen(userName: userName),
           ),
         );
       },

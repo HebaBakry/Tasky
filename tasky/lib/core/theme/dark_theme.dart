@@ -10,14 +10,9 @@ ThemeData darkTheme = ThemeData(
   scaffoldBackgroundColor: Color(0xFF181818),
   appBarTheme: AppBarTheme(
     backgroundColor: Color(0xFF181818),
-    titleTextStyle: TextStyle(
-      color: Color(0xFFFFFCFC),
-      fontSize: 20,
-    ),
+    titleTextStyle: TextStyle(color: Color(0xFFFFFCFC), fontSize: 20),
     centerTitle: true,
-    iconTheme: IconThemeData(
-      color: Color(0xFFFFFCFC),
-    ),
+    iconTheme: IconThemeData(color: Color(0xFFFFFCFC)),
   ),
   switchTheme: SwitchThemeData(
     trackColor: WidgetStateProperty.resolveWith((states) {
@@ -50,25 +45,19 @@ ThemeData darkTheme = ThemeData(
       backgroundColor: WidgetStateProperty.all(Color(0XFF15B86C)),
       foregroundColor: WidgetStateProperty.all(Color(0xFFFFFCFC)),
       textStyle: WidgetStateProperty.all(
-        TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-        ),
+        TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
       ),
     ),
   ),
   textButtonTheme: TextButtonThemeData(
-      style: ButtonStyle(
-        foregroundColor: WidgetStateProperty.all(Color(0xFFFFFCFC)),
-      )
+    style: ButtonStyle(
+      foregroundColor: WidgetStateProperty.all(Color(0xFFFFFCFC)),
+    ),
   ),
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: Color(0xFF15B86C),
     foregroundColor: Color(0xFFFFFCFC),
-    extendedTextStyle: TextStyle(
-      fontSize: 14,
-      fontWeight: FontWeight.w500,
-    ),
+    extendedTextStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
   ),
   textTheme: TextTheme(
     displaySmall: TextStyle(
@@ -114,9 +103,7 @@ ThemeData darkTheme = ThemeData(
     labelLarge: TextStyle(color: Colors.white, fontSize: 24),
   ),
   inputDecorationTheme: InputDecorationTheme(
-    hintStyle: TextStyle(
-      color: Color(0xFF6D6D6D),
-    ),
+    hintStyle: TextStyle(color: Color(0xFF6D6D6D)),
     filled: true,
     fillColor: Color(0xFF282828),
     border: OutlineInputBorder(
@@ -125,24 +112,14 @@ ThemeData darkTheme = ThemeData(
     ),
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16),
-      borderSide: BorderSide(
-        color: Colors.red,
-        width: 0.5,
-      ),
+      borderSide: BorderSide(color: Colors.red, width: 0.5),
     ),
   ),
   checkboxTheme: CheckboxThemeData(
-    side: BorderSide(
-      color: Color(0xFF6E6E6E),
-      width: 2,
-    ),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(4),
-    ),
+    side: BorderSide(color: Color(0xFF6E6E6E), width: 2),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
   ),
-  iconTheme: IconThemeData(
-    color: Color(0xFFFFFCFC),
-  ),
+  iconTheme: IconThemeData(color: Color(0xFFFFFCFC)),
   listTileTheme: ListTileThemeData(
     titleTextStyle: TextStyle(
       color: Color(0xFFFFFCFC),
@@ -172,10 +149,7 @@ ThemeData darkTheme = ThemeData(
     elevation: 2,
     shadowColor: Color(0xFF15B86C),
     labelTextStyle: WidgetStateProperty.all(
-      TextStyle(
-        fontSize: 20,
-        fontWeight: FontWeight.w400,
-      ),
+      TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
     ),
   ),
 );
